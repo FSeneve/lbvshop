@@ -1,5 +1,5 @@
 const notFound = (req, res, next) => {
-  const error = new Error(`Not Found - ${req.originalUrl}`);
+  const error = new Error(`Non trouve - ${req.originalUrl}`);
   res.status(404);
   next(error);
 };
@@ -11,7 +11,7 @@ const errorHandler = (err, req, res, next) => {
   // If Mongoose not found error, set to 404 and change message
   if (err.name === 'CastError' && err.kind === 'ObjectId') {
     statusCode = 404;
-    message = 'Resource not found';
+    message = 'Non trouve';
   }
 
   res.status(statusCode).json({

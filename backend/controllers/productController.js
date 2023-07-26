@@ -34,7 +34,7 @@ const getProductById = asyncHandler(async (req, res) => {
     return res.json(product);
   }
   res.status(404);
-  throw new Error('Resource not found');
+  throw new Error('La ressource non trouve');
 });
 
 // @desc    Create a product
@@ -79,7 +79,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.json(updatedProduct);
   } else {
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error('Produit non trouve');
   }
 });
 
@@ -91,10 +91,10 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
   if (product) {
     await Product.deleteOne({ _id: product._id });
-    res.json({ message: 'Product removed' });
+    res.json({ message: 'Produit supprime avec succes' });
   } else {
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error('Produit non trouve');
   }
 });
 
@@ -113,7 +113,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 
     if (alreadyReviewed) {
       res.status(400);
-      throw new Error('Product already reviewed');
+      throw new Error('Vous avez deja laisse un avis sur ce produit');
     }
 
     const review = {
@@ -132,10 +132,10 @@ const createProductReview = asyncHandler(async (req, res) => {
       product.reviews.length;
 
     await product.save();
-    res.status(201).json({ message: 'Review added' });
+    res.status(201).json({ message: 'Avis ajoute avec succes' });
   } else {
     res.status(404);
-    throw new Error('Product not found');
+    throw new Error('Produit non trouve');
   }
 });
 
